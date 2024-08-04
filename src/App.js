@@ -1,24 +1,15 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import initialTheme from './theme/theme'; 
+import {ChakraProvider} from '@chakra-ui/react';
+import ProtectedRoutes from './routes/index.';
 
 function App() {
+  const [currentTheme, setCurrentTheme] = useState(initialTheme);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider theme={currentTheme}>
+       <ProtectedRoutes currentTheme={currentTheme} setCurrentTheme={setCurrentTheme}/>
+    </ChakraProvider>
   );
 }
 
